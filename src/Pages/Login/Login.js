@@ -20,6 +20,7 @@ import {
 export default function Login({navigation}) {
   const [email, setEmail] = useState([]);
   const [senha, setSenha] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   return (
     <KeyboardAvoidingView>
@@ -31,6 +32,8 @@ export default function Login({navigation}) {
           <TextInput
             placeholder="E-mail"
             autoCorrect={false}
+            keyBoardType="email-address"
+            autoCaptaliza="none"
             onChange={(text) => {
               setEmail(text);
             }}
@@ -38,17 +41,21 @@ export default function Login({navigation}) {
           <TextInput
             placeholder="Senha"
             autoCorrect={false}
+            secureTextEntry
+            autoCaptaliza="none"
             onChange={(text) => {
               setSenha(text);
             }}
           />
           <BtnLogin onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.TextInput}>Logar</Text>
+            <Text style={styles.TextInputLogin}>
+              {loading ? 'Carregando...' : 'Entrar'}
+            </Text>
           </BtnLogin>
           <TouchableOpacity
             style={styles.btnRegister}
             onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.TextInput}>Criar conta</Text>
+            <Text style={styles.TextInputRegister}>Criar uma conta</Text>
           </TouchableOpacity>
         </InputContainer>
       </Container>
@@ -58,9 +65,14 @@ export default function Login({navigation}) {
 
 const styles = StyleSheet.create({
   btnRegister: {
-    marginTop: 10,
+    marginTop: 20,
   },
-  TextInput: {
+  TextInputLogin: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  TextInputRegister: {
     color: '#FFF',
   },
   input: {

@@ -14,7 +14,7 @@ export default function Splash({navigation}) {
 
   return (
     <SafeAreaView>
-      <Lottie source={rocket} resizeMode="contain" autoSize autoPlay loop />
+      <Lottie source={rocket} resizeMode="contain" autoPlay loop />
     </SafeAreaView>
   );
 }

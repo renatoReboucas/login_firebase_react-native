@@ -39,6 +39,10 @@ export const TextInput = styled.TextInput`
   color: #222;
   font-size: 17px;
   border-radius: 7px;
+  border-width: 1px;
+  border-color: #000;
+  height: 50px;
+  padding-left: 13px;
 `;
 
 export const BtnLogin = styled.TouchableOpacity`
