@@ -15,6 +15,7 @@ export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
 export const ImageContainer = styled.View`
   margin-top: 100px;
   justify-content: center;
+  margin-bottom: 110px;
 `;
 
 export const Container = styled.View`
