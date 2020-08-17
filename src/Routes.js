@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
+import Splash from './Pages/Splash/Splash';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,8 @@ const StackScreens = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}
-      initialRouteName="Login">
+      initialRouteName="Splash">
+      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
     </Stack.Navigator>
