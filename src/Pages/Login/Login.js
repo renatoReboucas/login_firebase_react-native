@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {
   Text,
-  AsyncStorage,
   TouchableOpacity,
   Image,
   StyleSheet,
+  BackHandler,
 } from 'react-native';
-import * as Animatable from 'react-native-animatable';
+// import * as Animatable from 'react-native-animatable';
 import {
   SafeAreaView,
   Container,
@@ -17,10 +17,21 @@ import {
   BtnLogin,
 } from './styles';
 
+// import firebase from '@react-native-firebase/app';
+// import auth from '@react-native-firebase/auth';
+import firebase from '../../services/Firebase';
 export default function Login({navigation}) {
   const [email, setEmail] = useState([]);
   const [senha, setSenha] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+  }, []);
+
+  const login = async () => {
+    setLoading(true);
+  };
 
   return (
     <KeyboardAvoidingView>
@@ -33,7 +44,7 @@ export default function Login({navigation}) {
             placeholder="E-mail"
             autoCorrect={false}
             keyBoardType="email-address"
-            autoCaptaliza="none"
+            autoCapitalize="none"
             onChange={(text) => {
               setEmail(text);
             }}
@@ -42,12 +53,12 @@ export default function Login({navigation}) {
             placeholder="Senha"
             autoCorrect={false}
             secureTextEntry
-            autoCaptaliza="none"
+            autoCapitalize="none"
             onChange={(text) => {
               setSenha(text);
             }}
           />
-          <BtnLogin onPress={() => navigation.navigate('Register')}>
+          <BtnLogin onPress={login}>
             <Text style={styles.TextInputLogin}>
               {loading ? 'Carregando...' : 'Entrar'}
             </Text>

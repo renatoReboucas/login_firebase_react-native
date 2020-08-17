@@ -1,11 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  AsyncStorage,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from 'react-native';
+import {Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 
 import {
   Container,
@@ -16,11 +10,40 @@ import {
   BtnLogin,
 } from '../Login/styles';
 
-export default function Register({navigation}) {
-  const [email, setEmail] = useState([]);
-  const [senha, setSenha] = useState([]);
-  const [nome, setNome] = useState([]);
+import firebase from '../../services/Firebase';
+
+function Register({navigation}) {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const createUser = () => {
+    setLoading(true);
+
+    // console.log('entrou firebase', `${email} ${senha}`);
+    if (email == 0 && senha == 0) {
+      alert('Entre com email e senha');
+    } else {
+    }
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, senha)
+      .then(() => {
+        setLoading(false);
+        navigation.navigate('Login');
+      })
+      .catch((error) => {
+        setLoading(false);
+        if (error.code === 'auth/email-already-in-use') {
+          alert('O E-mail informado está em uso');
+        }
+
+        if (error.code === 'auth/invalid-email') {
+          alert('E-mail invalido');
+        }
+        console.log('DEU RUIM', error);
+      });
+  };
 
   return (
     <KeyboardAvoidingView>
@@ -33,29 +56,22 @@ export default function Register({navigation}) {
             placeholder="E-mail"
             autoCorrect={false}
             keyBoardType="email-address"
-            autoCaptaliza="none"
-            onChange={(text) => {
+            autoCapitalize="none"
+            onChangeText={(text) => {
               setEmail(text);
             }}
           />
-          <TextInput
-            placeholder="Nome"
-            autoCorrect={false}
-            autoCaptaliza="none"
-            onChange={(text) => {
-              setNome(text);
-            }}
-          />
+
           <TextInput
             placeholder="Senha"
             autoCorrect={false}
             secureTextEntry
-            autoCaptaliza="none"
-            onChange={(text) => {
+            autoCapitalize="none"
+            onChangeText={(text) => {
               setSenha(text);
             }}
           />
-          <BtnLogin onPress={() => navigation.navigate('Register')}>
+          <BtnLogin onPress={createUser}>
             <Text style={styles.TextInputLogin}>
               {loading ? 'Carregando...' : 'Criar conta'}
             </Text>
@@ -89,3 +105,5 @@ const styles = StyleSheet.create({
     width: '90%',
   },
 });
+
+export default Register;
