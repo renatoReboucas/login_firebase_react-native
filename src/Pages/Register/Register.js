@@ -24,25 +24,25 @@ function Register({navigation}) {
     if (email == 0 && senha == 0) {
       alert('Entre com email e senha');
     } else {
-    }
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, senha)
-      .then(() => {
-        setLoading(false);
-        navigation.navigate('Login');
-      })
-      .catch((error) => {
-        setLoading(false);
-        if (error.code === 'auth/email-already-in-use') {
-          alert('O E-mail informado está em uso');
-        }
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, senha)
+        .then(() => {
+          setLoading(false);
+          navigation.navigate('Login');
+        })
+        .catch((error) => {
+          setLoading(false);
+          if (error.code === 'auth/email-already-in-use') {
+            alert('O E-mail informado está em uso');
+          }
 
-        if (error.code === 'auth/invalid-email') {
-          alert('E-mail invalido');
-        }
-        console.log('DEU RUIM', error);
-      });
+          if (error.code === 'auth/invalid-email') {
+            alert('E-mail invalido');
+          }
+          console.log('DEU RUIM', error);
+        });
+    }
   };
 
   return (

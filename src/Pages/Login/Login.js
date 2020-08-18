@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   BackHandler,
+  AsyncStorage,
 } from 'react-native';
 // import * as Animatable from 'react-native-animatable';
 import {
@@ -24,13 +25,43 @@ export default function Login({navigation}) {
   const [email, setEmail] = useState([]);
   const [senha, setSenha] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
+    AsyncStorage.getItem('user').then((data) => {
+      const dado = JSON.parse(data);
+      setUser(dado);
+      setEmail(user.email.toString());
+      setSenha(user.senha.toString());
+    });
   }, []);
 
   const login = async () => {
     setLoading(true);
+    if (email == 0 && senha == 0) {
+      alert('Entre com email e senha');
+    } else {
+      let data = {
+        email,
+        senha,
+      };
+      await AsyncStorage.setItem('user', JSON.stringify(data));
+
+      // console.log(user);
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, senha)
+        .then(() => {
+          setLoading(false);
+          navigation.navigate('Home', {email: email});
+        })
+        .catch((error) => {
+          setLoading(false);
+          alert('Erro ao realizar o login, Verifique E-mail e Senha!');
+          console.log('DEU RUIM', error);
+        });
+    }
   };
 
   return (
@@ -45,7 +76,8 @@ export default function Login({navigation}) {
             autoCorrect={false}
             keyBoardType="email-address"
             autoCapitalize="none"
-            onChange={(text) => {
+            value={user.email}
+            onChangeText={(text) => {
               setEmail(text);
             }}
           />
@@ -54,7 +86,8 @@ export default function Login({navigation}) {
             autoCorrect={false}
             secureTextEntry
             autoCapitalize="none"
-            onChange={(text) => {
+            value={user.senha}
+            onChangeText={(text) => {
               setSenha(text);
             }}
           />
