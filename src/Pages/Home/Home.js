@@ -3,13 +3,8 @@ import {View, Text, Button} from 'react-native';
 
 import firebase from '../../services/Firebase';
 export default function Home({route, navigation}) {
-  const logOut = () => {
-    firebase
-      .signOut()
-      .then(() => navigation.navigate('Login'))
-      .cath((error) => {
-        console.log('DEU RUIM!', error);
-      });
+  const logOut = async () => {
+    navigation.navigate('Login');
   };
   return (
     <View>

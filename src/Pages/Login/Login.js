@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 // import * as Animatable from 'react-native-animatable';
 import {
-  SafeAreaView,
   Container,
   ImageContainer,
   InputContainer,
@@ -58,6 +57,8 @@ export default function Login({navigation}) {
         })
         .catch((error) => {
           setLoading(false);
+          setEmail('');
+          setSenha('');
           alert('Erro ao realizar o login, Verifique E-mail e Senha!');
           console.log('DEU RUIM', error);
         });
@@ -86,7 +87,6 @@ export default function Login({navigation}) {
             autoCorrect={false}
             secureTextEntry
             autoCapitalize="none"
-            value={user.senha}
             onChangeText={(text) => {
               setSenha(text);
             }}
