@@ -77,7 +77,6 @@ export default function Login({navigation}) {
             autoCorrect={false}
             keyBoardType="email-address"
             autoCapitalize="none"
-            value={user.email}
             onChangeText={(text) => {
               setEmail(text);
             }}

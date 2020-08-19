@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, StyleSheet, SafeAreaView} from 'react-native';
 
 import firebase from '../../services/Firebase';
 export default function Home({route, navigation}) {
@@ -7,9 +7,15 @@ export default function Home({route, navigation}) {
     navigation.navigate('Login');
   };
   return (
-    <View>
+    <SafeAreaView>
       <Text>Você está logado {route.params.email}</Text>
       <Button title="LogOut" onPress={logOut} />
-    </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 50,
+  },
+});
