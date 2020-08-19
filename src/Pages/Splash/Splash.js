@@ -29,7 +29,7 @@ export default function Splash({navigation}) {
         {/* <Text>HEADER</Text> */}
         <Animatable.Image
           animation="fadeInDownBig"
-          duration="1500"
+          duration="2000"
           style={styles.logo}
           source={require('../../assets/images/space-ship.png')}
         />

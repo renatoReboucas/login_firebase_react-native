@@ -37,11 +37,12 @@ export default function Login({navigation}) {
   const [user, setUser] = useState([]);
   const [data, setData] = React.useState({
     username: '',
-    password: '',
+    senha: '',
     check_textInputChange: false,
     secureTextEntry: true,
     isValidUser: true,
     isValidPassword: true,
+    email: '',
   });
 
   useEffect(() => {
@@ -52,7 +53,6 @@ export default function Login({navigation}) {
       setUser(dado);
       setEmail(user.email.toString());
       setSenha(user.senha.toString());
-      // navigation.navigate('Home', {email: email});
     });
     AsyncStorage.getItem('token').then((item) => {
       if (item.length !== null) {
@@ -142,16 +142,16 @@ export default function Login({navigation}) {
           <Animatable.Text
             style={styles.txtHeader}
             animation="fadeInLeft"
-            duration={1500}>
+            duration={2000}>
             Bem vindo!
           </Animatable.Text>
         </Header>
         <Animatable.View
           animation="fadeInUpBig"
-          duration={1500}
+          duration={2000}
           style={[styles.footer]}>
+          <TxtFooter>Email </TxtFooter>
           <IconView>
-            <TxtFooter>Email </TxtFooter>
             <Icons name="user-o" color="#05375a" size={20} />
             <TextInput
               margin={Platform.OS === 'ios' ? 0 : -12}
@@ -173,12 +173,12 @@ export default function Login({navigation}) {
           {data.isValidUser ? null : (
             <Animatable.View animation="fadeInLeft" duration={500}>
               <Text style={styles.errorMsg}>
-                O e-mail deve conter mais de 4 caracteres
+                O e-mail deve conter mais de 6 caracteres
               </Text>
             </Animatable.View>
           )}
+          <TxtFooter>Senha </TxtFooter>
           <IconView>
-            <TxtFooter>Senha </TxtFooter>
             <Icons name="lock" color="#05375a" size={20} />
             <TextInput
               margin={Platform.OS === 'ios' ? 0 : -12}
