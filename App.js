@@ -5,10 +5,7 @@ import Routes from './src/Routes';
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar
-        barStyle={Platform.OS === 'ios' ? 'dark-content' : 'light-content'}
-        backgroundColor="#000"
-      />
+      <StatusBar barStyle="light-content" backgroundColor="#353f49" />
       <Routes />
     </>
   );

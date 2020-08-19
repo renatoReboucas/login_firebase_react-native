@@ -28,16 +28,10 @@ export const InputContainer = styled.View`
   
 `;
 export const TextInput = styled.TextInput`
-  background: #fff;
-  width: 90%;
-  margin-bottom: 15px;
-  color: #222;
-  font-size: 17px;
-  border-radius: 7px;
-  border-width: 1px;
-  border-color: #000;
-  height: 50px;
-  padding-left: 13px;
+  flex: 1;
+  padding-left: 10px;
+  margin-top: ${(props) => props.margin};
+  color: #05375a;
 `;
 
 export const BtnLogin = styled.TouchableOpacity`
@@ -50,8 +44,10 @@ export const BtnLogin = styled.TouchableOpacity`
   align-items: center
   justify-content: center;
 `;
-export const txtLogin = styled.Text`
+export const TxtLogin = styled.Text`
   color: #fff;
+  font-weight: bold;
+  font-size: 18;
 `;
 
 export const Header = styled.View`
@@ -71,5 +67,35 @@ export const Footer = styled.View`
 export const TxtHeader = styled.Text`
   font-size: 30px;
   color: #fff;
+  font-weight: bold;
+`;
+export const TxtFooter = styled.Text`
+  font-size: 18px;
+  color: #05375a;
+`;
+
+export const IconView = styled.View`
+  flex-direction: row;
+  margin-top: 10px;
+  border-bottom-width: 1px;
+  border-bottom-color: #f2f2f2;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+`;
+
+export const BtnRegister = styled.TouchableOpacity`
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border-color: #c70039;
+  border-width: 1px;
+  margin-top: 15px;
+`;
+
+export const TxtRegister = styled.Text`
+  font-size: 18px;
+  color: #c70039;
   font-weight: bold;
 `;

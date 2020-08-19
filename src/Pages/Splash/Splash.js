@@ -12,17 +12,9 @@ import {
 
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
-// import Icons from 'react-native-vector-icons/MaterialIcons';
-
-import {
-  SafeAreaView,
-  Header,
-  Footer,
-  Title,
-  TextLogin,
-  BtnLogin,
-  TextRegister,
-} from './style';
+import Icons from 'react-native-vector-icons/MaterialIcons';
+Icons.loadFont();
+import {SafeAreaView, Header, Title, TextLogin, BtnLogin} from './style';
 
 export default function Splash({navigation}) {
   // useEffect(() => {
@@ -36,7 +28,7 @@ export default function Splash({navigation}) {
       <Header>
         {/* <Text>HEADER</Text> */}
         <Animatable.Image
-          animation="bounceIn"
+          animation="fadeInDownBig"
           duration="1500"
           style={styles.logo}
           source={require('../../assets/images/space-ship.png')}
@@ -51,7 +43,13 @@ export default function Splash({navigation}) {
             <LinearGradient
               colors={['#C70039', '#D35478']}
               style={styles.login}>
-              <TextLogin>Faça login</TextLogin>
+              <TextLogin style={styles.icon}>Faça login</TextLogin>
+              <Icons
+                style={styles.icon}
+                name="navigate-next"
+                color="#fff"
+                size={20}
+              />
             </LinearGradient>
           </TouchableOpacity>
         </BtnLogin>
@@ -59,12 +57,9 @@ export default function Splash({navigation}) {
     </SafeAreaView>
   );
 }
-const {height} = Dimensions.get('screen');
-const height_logo = height * 0.28;
+
 const styles = StyleSheet.create({
   logo: {
-    // width: height_logo,
-    // height: height_logo,
     marginTop: '20%',
   },
   login: {
@@ -82,5 +77,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingVertical: 50,
     paddingHorizontal: 30,
+  },
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

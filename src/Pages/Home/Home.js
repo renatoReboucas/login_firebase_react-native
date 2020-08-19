@@ -1,9 +1,20 @@
-import React from 'react';
-import {View, Text, Button, StyleSheet, SafeAreaView} from 'react-native';
-
-import firebase from '../../services/Firebase';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  SafeAreaView,
+  BackHandler,
+  AsyncStorage,
+} from 'react-native';
+import {} from '../Login/styles';
 export default function Home({route, navigation}) {
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+  }, []);
   const logOut = async () => {
+    await AsyncStorage.setItem('token', '');
     navigation.navigate('Login');
   };
   return (
