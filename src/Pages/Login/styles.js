@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 // import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 
-export const SafeAreaView = styled.SafeAreaView`
+export const SafeAreaView = styled.View`
   flex: 1;
   background: #353f49;
 `;
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
-  align-items: center;
-  justify-content: center;
+
   background: #353f49;
 `;
 
@@ -20,10 +19,6 @@ export const ImageContainer = styled.View`
 
 export const Container = styled.View`
   flex: 1;
-  width: 90%;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 50%;
 `;
 
 export const InputContainer = styled.View`
@@ -57,4 +52,24 @@ export const BtnLogin = styled.TouchableOpacity`
 `;
 export const txtLogin = styled.Text`
   color: #fff;
+`;
+
+export const Header = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+  padding-horizontal: 20px;
+  padding-bottom: 50px;
+`;
+
+export const Footer = styled.View`
+  flex: 3;
+  background: #fff;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding: 50px 30px;
+`;
+export const TxtHeader = styled.Text`
+  font-size: 30px;
+  color: #fff;
+  font-weight: bold;
 `;

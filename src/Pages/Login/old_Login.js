@@ -16,8 +16,6 @@ import {
   TextInput,
   BtnLogin,
   Header,
-  Footer,
-  TxtHeader,
 } from './styles';
 
 import * as Animatable from 'react-native-animatable';
@@ -72,11 +70,41 @@ export default function Login({navigation}) {
 
   return (
     <KeyboardAvoidingView>
+      <ImageContainer>
+        <Image source={require('../../assets/images/space-ship.png')} />
+      </ImageContainer>
       <Container>
-        <Header>
-          <TxtHeader>Bem vindo!</TxtHeader>
-        </Header>
-        <Footer />
+        <Header />
+        <InputContainer>
+          <TextInput
+            placeholder="E-mail"
+            autoCorrect={false}
+            keyBoardType="email-address"
+            autoCapitalize="none"
+            onChangeText={(text) => {
+              setEmail(text);
+            }}
+          />
+          <TextInput
+            placeholder="Senha"
+            autoCorrect={false}
+            secureTextEntry
+            autoCapitalize="none"
+            onChangeText={(text) => {
+              setSenha(text);
+            }}
+          />
+          <BtnLogin onPress={login}>
+            <Text style={styles.TextInputLogin}>
+              {loading ? 'Carregando...' : 'Entrar'}
+            </Text>
+          </BtnLogin>
+          <TouchableOpacity
+            style={styles.btnRegister}
+            onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.TextInputRegister}>Criar uma conta</Text>
+          </TouchableOpacity>
+        </InputContainer>
       </Container>
     </KeyboardAvoidingView>
   );

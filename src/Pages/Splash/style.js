@@ -9,8 +9,8 @@ export const SafeAreaView = styled.View`
 export const Header = styled.View`
   flex: 2;
   justifyContent center;
-  alignItems: center;
-  margin-top: 50px;
+  align-items: center;
+
 `;
 
 export const Footer = styled.View`
@@ -28,7 +28,21 @@ export const Title = styled.Text`
   font-weight: bold;
   margin-bottom: 5px;
 `;
-export const Text = styled.Text`
+export const TextLogin = styled.Text`
   margin-top: 5px;
-  color: #05375a;
+  color: #fff;
+  font-weight: bold;
+  justifyContent center;
+  align-items: center;
+`;
+export const TextRegister = styled.Text`
+  margin-top: 5px;
+  color: #222;
+  font-weight: bold;
+  justifyContent center;
+  align-items: center;
+`;
+export const BtnLogin = styled.View`
+  align-items: flex-end;
+  margin-top: 30px;
 `;
